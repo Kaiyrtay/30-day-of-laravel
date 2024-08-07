@@ -25,7 +25,8 @@
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                                 <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
                                 <x-nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
-                                <x-nav-link href="/contact" type="button" :active="request()->is('contact')">Contact</x-nav-link>
+                                <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                                <x-nav-link href="/jobs" :active="request()->is('jobs')">JOBS</x-nav-link>
                             </div>
                         </div>
                     </div>
@@ -87,6 +88,7 @@
                     <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
                     <x-nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
                     <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                    <x-nav-link href="/jobs" :active="request()->is('jobs')">JOBS</x-nav-link>
                 </div>
                 <div class="border-t border-gray-700 pb-3 pt-4">
                     <div class="flex items-center px-5">

@@ -1,7 +1,8 @@
-<x-layout> 
+<x-layout>
     <x-slot:heading>
         Home page
     </x-slot:heading>
     <h1>Home, page.</h1>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem, eligendi doloremque voluptatem similique quia saepe ex blanditiis odit facilis nostrum voluptatum debitis corrupti?</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem, eligendi doloremque voluptatem similique quia
+        saepe ex blanditiis odit facilis nostrum voluptatum debitis corrupti?</p>
 </x-layout>
