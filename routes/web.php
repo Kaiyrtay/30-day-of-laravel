@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
@@ -67,7 +66,9 @@ Route::get('/jobs', function () { //use ($jobs) { // option 1
     // return view('jobs', [
     //     'jobs' => Job::all() //$jobs // option 1
     // ]);
-    $jobs = Job::with('employer')->get();
+    // $jobs = Job::with('employer')->paginate(3);
+    // $jobs = Job::with('employer')->simplePaginate(3);
+    $jobs = Job::with('employer')->cursorPaginate(3);
 
     return view('jobs', [
         'jobs' => $jobs
