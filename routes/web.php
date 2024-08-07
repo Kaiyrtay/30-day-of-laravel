@@ -64,8 +64,13 @@ Route::get('/contact', function () {
 
 // return view and array or data
 Route::get('/jobs', function () { //use ($jobs) { // option 1
+    // return view('jobs', [
+    //     'jobs' => Job::all() //$jobs // option 1
+    // ]);
+    $jobs = Job::with('employer')->get();
+
     return view('jobs', [
-        'jobs' => Job::all() //$jobs // option 1
+        'jobs' => $jobs
     ]);
 });
 
