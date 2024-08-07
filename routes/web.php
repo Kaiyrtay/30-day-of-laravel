@@ -70,9 +70,13 @@ Route::get('/jobs', function () { //use ($jobs) { // option 1
     // $jobs = Job::with('employer')->simplePaginate(3);
     $jobs = Job::with('employer')->cursorPaginate(3);
 
-    return view('jobs', [
+    return view('jobs.index', [
         'jobs' => $jobs
     ]);
+});
+
+Route::get('/jobs/create', function () {
+    return view('jobs.create');
 });
 
 Route::get('/jobs/{id}', function ($id) { //use ($jobs) { // option 1
@@ -82,5 +86,12 @@ Route::get('/jobs/{id}', function ($id) { //use ($jobs) { // option 1
     // $job = Arr::first($jobs, fn($job) => $job['id'] == $id); // Option 1
     // $job = Arr::first(Job::all(), fn($job) => $job['id'] == $id); //Option 2
     $job = Job::find($id);
-    return view('job', ['job' => $job]);
+    return view('jobs.show', ['job' => $job]);
 });
+
+// POST methods
+Route::post('/jobs',function(){
+    //TODO: validation
+    dd("stop it");    
+});
+
