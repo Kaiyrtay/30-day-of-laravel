@@ -7,13 +7,13 @@ Route::view('/', 'home');
 Route::view('/about', 'about');
 Route::view('/contact', 'contact');
 // JOBS links
-Route::get('/jobs', [JobController::class, 'list']);
-Route::post('/jobs', [JobController::class, 'create']);
-Route::view('/jobs/create', 'jobs.create');
-Route::get('/jobs/{job}', [JobController::class, 'detail']);
-Route::patch('/jobs/{job}', [JobController::class, 'update']);
-Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
-Route::get('/jobs/{job}/edit', [JobController::class, 'redirect_to_edit_view']);
+Route::controller(JobController::class)->group(function () {
+    Route::get('/jobs', 'list');
+    Route::post('/jobs', 'create');
+    Route::view('/jobs/create', 'jobs.create');
+    Route::get('/jobs/{job}', 'detail');
+    Route::patch('/jobs/{job}', 'update');
+    Route::delete('/jobs/{job}', 'destroy');
+    Route::get('/jobs/{job}/edit', 'redirect_to_edit_view');
+});
 
-// php artisan route:list
-// php artisan route:list --except-vendor
