@@ -7,18 +7,14 @@ use App\Models\Job;
 
 class JobController extends Controller
 {
-    public function list()
+    public function index()
     {
         $jobs = Job::with('employer')->latest()->paginate(3);
         return view('jobs.index', [
             'jobs' => $jobs
         ]);
     }
-    public function redirect_to_edit_view(Job $job)
-    {
-        return view('jobs.edit', ['job' => $job]);
-    }
-    public function create()
+    public function store()
     {
         request()->validate([
             'title' => ['required', 'min:3'],
@@ -31,7 +27,11 @@ class JobController extends Controller
         ]);
         return redirect('/jobs');
     }
-    public function detail(Job $job)
+    public function create()
+    {
+        return view('jobs.create');
+    }
+    public function show(Job $job)
     {
         return view('jobs.show', ['job' => $job]);
 
@@ -53,5 +53,8 @@ class JobController extends Controller
         $job->delete();
         return redirect('/jobs');
     }
-
+    public function edit(Job $job)
+    {
+        return view('jobs.edit', ['job' => $job]);
+    }
 }
