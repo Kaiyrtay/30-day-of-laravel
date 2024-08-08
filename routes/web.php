@@ -79,23 +79,23 @@ Route::get('/jobs/create', function () {
     return view('jobs.create');
 });
 //detail/retrieve specific job
-Route::get('/jobs/{id}', function ($id) { //use ($jobs) { // option 1
+Route::get('/jobs/{job}', function (Job $job) { //use ($jobs) { // option 1
     // Illuminate\Support\Arr::first($jobs, function($job) use($id){
     //     return $job['id'] == $id;
     // });
     // $job = Arr::first($jobs, fn($job) => $job['id'] == $id); // Option 1
     // $job = Arr::first(Job::all(), fn($job) => $job['id'] == $id); //Option 2
-    $job = Job::find($id);
+    // $job = Job::find($id);
     return view('jobs.show', ['job' => $job]);
 });
 //patch method used for updating the value
-Route::patch('/jobs/{id}', function ($id) {
+Route::patch('/jobs/{job}', function (Job $job) {
     // TODO: auth
     request()->validate([
         'title' => ['required', 'min:3'],
         'salary' => ['required', 'integer']
     ]);
-    $job = Job::findOrFail($id); //is set to null
+    // $job = Job::findOrFail($id); //is set to null
 
     // $job->title = request('title');
     // $job->salary = request('salary');
@@ -108,17 +108,18 @@ Route::patch('/jobs/{id}', function ($id) {
     return redirect('/jobs/'.$job->id);
 });
 //destroy
-Route::delete('/jobs/{id}', function ($id) {
-    $job = Job::findOrFail($id)->delete();
+Route::delete('/jobs/{job}', function (Job $job) {
+    // $job = Job::findOrFail($id)->delete();
+    $job->delete();
     return redirect('/jobs');
 });
-Route::get('/jobs/{id}/edit', function ($id) { //use ($jobs) { // option 1
+Route::get('/jobs/{job}/edit', function (Job $job) { //use ($jobs) { // option 1
     // Illuminate\Support\Arr::first($jobs, function($job) use($id){
     //     return $job['id'] == $id;
     // });
     // $job = Arr::first($jobs, fn($job) => $job['id'] == $id); // Option 1
     // $job = Arr::first(Job::all(), fn($job) => $job['id'] == $id); //Option 2
-    $job = Job::find($id);
+    // $job = Job::find($id);
     return view('jobs.edit', ['job' => $job]);
 });
 
