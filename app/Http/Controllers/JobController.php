@@ -14,10 +14,6 @@ class JobController extends Controller
             'jobs' => $jobs
         ]);
     }
-    public function redirect_to_create_view()
-    {
-        return view('jobs.create');
-    }
     public function redirect_to_edit_view(Job $job)
     {
         return view('jobs.edit', ['job' => $job]);
