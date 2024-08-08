@@ -1,5 +1,8 @@
 <?php ?>
 <x-layout>
+    <x-slot:heading>
+        Create job
+    </x-slot:heading>
     <form action="/jobs" method="post">
         @csrf
         <div class="space-y-12">

@@ -45,23 +45,23 @@ use App\Models\Job;
 //         ];
 //     }
 // }
-
+// landing page
 Route::get('/', function () {
     // $jobs = Job::all();
     // dd($jobs[0]->title);
     // die();
     return view('home');
 });
-
+//about page
 Route::get('/about', function () {
     return view('about');
 });
-
+//contact page
 Route::get('/contact', function () {
     return view('contact');
 });
 
-// return view and array or data
+// return view and array or data, all
 Route::get('/jobs', function () { //use ($jobs) { // option 1
     // return view('jobs', [
     //     'jobs' => Job::all() //$jobs // option 1
@@ -74,11 +74,11 @@ Route::get('/jobs', function () { //use ($jobs) { // option 1
         'jobs' => $jobs
     ]);
 });
-
+//create/insert page
 Route::get('/jobs/create', function () {
     return view('jobs.create');
 });
-
+//detail/retrieve specific job
 Route::get('/jobs/{id}', function ($id) { //use ($jobs) { // option 1
     // Illuminate\Support\Arr::first($jobs, function($job) use($id){
     //     return $job['id'] == $id;
@@ -88,16 +88,50 @@ Route::get('/jobs/{id}', function ($id) { //use ($jobs) { // option 1
     $job = Job::find($id);
     return view('jobs.show', ['job' => $job]);
 });
+//patch method used for updating the value
+Route::patch('/jobs/{id}', function ($id) {
+    // TODO: auth
+    request()->validate([
+        'title' => ['required', 'min:3'],
+        'salary' => ['required', 'integer']
+    ]);
+    $job = Job::findOrFail($id); //is set to null
+
+    // $job->title = request('title');
+    // $job->salary = request('salary');
+    // $job->save();
+
+    $job->update([
+        'title' => request('title'),
+        'salary' => request('salary'),
+    ]);
+    return redirect('/jobs/'.$job->id);
+});
+//destroy
+Route::delete('/jobs/{id}', function ($id) {
+    $job = Job::findOrFail($id)->delete();
+    return redirect('/jobs');
+});
+Route::get('/jobs/{id}/edit', function ($id) { //use ($jobs) { // option 1
+    // Illuminate\Support\Arr::first($jobs, function($job) use($id){
+    //     return $job['id'] == $id;
+    // });
+    // $job = Arr::first($jobs, fn($job) => $job['id'] == $id); // Option 1
+    // $job = Arr::first(Job::all(), fn($job) => $job['id'] == $id); //Option 2
+    $job = Job::find($id);
+    return view('jobs.edit', ['job' => $job]);
+});
 
 // POST methods
-Route::post('/jobs',function(){
+// create job form handle
+Route::post('/jobs', function () {
     //TODO: validation
     request()->validate([
-        'title'=>['required','min:3'],
-        'salary'=>['required','integer']
+        'title' => ['required', 'min:3'],
+        'salary' => ['required', 'integer']
     ]);
     Job::create([
-        'title'=> request('title'),
+        'title' => request('title'),
         'salary' => request('salary'),
         'employer_id' => 2
     ]);
