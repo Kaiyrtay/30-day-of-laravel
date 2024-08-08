@@ -16,8 +16,11 @@
                                 class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                 <input type="text" name="title" id="title" autocomplete="title"
                                     class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                    placeholder="foo bar">
+                                    placeholder="Title..." required>
                             </div>
+                            @error('title')
+                                <p class="text-xs text-red-500 font-semibold">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="sm:col-span-4">
@@ -27,13 +30,23 @@
                                 class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                 <input type="text" name="salary" id="salary" autocomplete="salary"
                                     class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                    placeholder="foo bar">
+                                    placeholder="Salary..." required>
                             </div>
+                            @error('salary')
+                                <p class="text-xs text-red-500 font-semibold">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
-                    
-
                 </div>
+                {{-- <div class="container mt-2">
+                    @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </div> --}}
             </div>
             <div class="mt-6 flex items-center justify-end gap-x-6">
                 <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>

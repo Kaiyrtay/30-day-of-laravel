@@ -116,8 +116,9 @@
         </nav>
 
         <header class="bg-white shadow">
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 sm:flex sm:justify-between">
                 <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ isset($heading) ? $heading : 'Sorry' }}</h1>
+                <x-button-link href="/jobs/create" type='a'>Create job</x-button-link>
             </div>
         </header>
         <main>
