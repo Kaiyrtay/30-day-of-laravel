@@ -15,7 +15,7 @@ Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');
 Route::get('/jobs/{job}', [JobController::class, 'show']);
 Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])
     ->middleware('auth')
-    ->can('edit-job', 'job');
+    ->can('edit', 'job'); // edit is for policy name, edit-job is for gates
 Route::patch('/jobs/{job}', [JobController::class, 'update']);
 Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
 
