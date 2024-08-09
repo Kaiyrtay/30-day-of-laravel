@@ -13,7 +13,6 @@ class SessionController extends Controller
     {
         return view('auth.login');
     }
-
     public function store()
     {
         $validated_attributes = request()->validate([
@@ -26,7 +25,7 @@ class SessionController extends Controller
                 'email' => 'Sorry, provided credentials do not match.'
             ]);
         }
-        
+
         request()->session()->regenerate();
         return redirect('/jobs');
     }
