@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\JobPosted;
 
 class JobController extends Controller
 {
@@ -22,11 +23,16 @@ class JobController extends Controller
             'title' => ['required', 'min:3'],
             'salary' => ['required', 'integer']
         ]);
-        Job::create([
+        $job = Job::create([
             'title' => request('title'),
             'salary' => request('salary'),
-            'employer_id' => 2
+            'employer_id' => request()->user()->id
         ]);
+
+        Mail::to(User::select($job->employer_id())->email())->send(
+            new JobPosted($job)
+        );
+
         return redirect('/jobs');
     }
     public function create()
@@ -60,25 +66,7 @@ class JobController extends Controller
     }
     public function edit(Job $job)
     {
-        //STEP 1
-        // if (Auth::guest()) {
-        //     return redirect('/login');
-        // }
-        // if ($job->employer->user->isNot(Auth::user())) {
-        //     abort(403);
-        // }
-        // STEP 2
-        // Gate::define('edit-job', function (User $user, Job $job) {
-        //     return $job->employer->user->is($user);
-        // });
-        // STEP 3
-        // OPTION 1
         Gate::authorize('edit-job', $job);
-        //::denies 
-        // OPTION 2
-        // if (Auth::user()->cannot('edit-job', $job)) {
-        //     abort(403);
-        // }
         return view('jobs.edit', ['job' => $job]);
     }
 }

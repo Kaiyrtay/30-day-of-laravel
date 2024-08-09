@@ -26,3 +26,11 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/login', [SessionController::class, "create"])->name('login');
 Route::post('/login', [SessionController::class, "store"]);
 Route::post('/logout', [SessionController::class, "destroy"]);
+
+//dummy
+Route::get('test', function () {
+    Illuminate\Support\Facades\Mail::to('kaiyrtaygabbassov@gmail.com')->send(
+        new App\Mail\JobPosted()
+    );
+    return 'Done';
+});
