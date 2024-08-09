@@ -1,33 +1,35 @@
 <x-layout>
     <x-slot:heading>
-        Create job
+        Login
     </x-slot:heading>
-    <form action="/jobs" method="post">
+    <form action="/register" method="post">
         @csrf
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
-              
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
                     <x-form-field>
-                        <x-form-label for="title">Title</x-form-label>
+                        <x-form-label for="email">Email</x-form-label>
                         <div class="mt-2">
-                            <x-form-input type="text" name="title" id="title" placeholder="Title..." required />
-                            <x-form-error name='title' />
+                            <x-form-input type="email" name="email" id="email" placeholder="Email..." required />
+                            <x-form-error name='email' />
                         </div>
                     </x-form-field>
+
                     <x-form-field>
-                        <x-form-label for="salary">Salary</x-form-label>
+                        <x-form-label for="password">Password</x-form-label>
                         <div class="mt-2">
-                            <x-form-input type="text" name="salary" id="salary" placeholder="Salary..."
+                            <x-form-input type="password" name="password" id="password" placeholder="Password..."
                                 required />
-                            <x-form-error name='salary' />
+                            <x-form-error name='password' />
                         </div>
                     </x-form-field>
+
                 </div>
             </div>
             <div class="mt-6 flex items-center justify-end gap-x-6">
-                <a href='/jobs' type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
-                <x-form-button>Save</x-form-button>
+                <a href='/' type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
+                <x-form-button>Login</x-form-button>
             </div>
         </div>
     </form>
