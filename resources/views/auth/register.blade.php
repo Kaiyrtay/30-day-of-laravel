@@ -6,14 +6,15 @@
         @csrf
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
-                
+
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
                     <x-form-field>
                         <x-form-label for="first_name">First name</x-form-label>
                         <div class="mt-2">
-                            <x-form-input type="text" name="title" id="title" placeholder="Name..." required />
-                            <x-form-error name='title' />
+                            <x-form-input type="text" name="first_name" id="first_name" placeholder="Name..."
+                                required />
+                            <x-form-error name='first_name' />
                         </div>
                     </x-form-field>
 
